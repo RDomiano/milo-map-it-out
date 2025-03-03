@@ -19,7 +19,7 @@
       crossorigin=""
     ></script>
 
-    <title>Host Leaflet Map in GitHub</title>
+    <title>Milo's Local Community</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <style>
@@ -44,11 +44,11 @@
 
     // OpenStreetMap map
     var osmMap = L.tileLayer(
-      "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+      "http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png",
       {
         maxZoom: 19,
         attribution:
-          '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+          '&copy; <a href="https://carto.com/attribution">CartoDB</a> contributors',
       }
     ).addTo(map);
 
