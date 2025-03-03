@@ -49,6 +49,27 @@
       .default-icon {
         color: #FF5722; /* Orange color for other types */
       }
+
+      .popup-content {
+        font-family: 'Arial', sans-serif;
+        color: #333;
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        padding: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .popup-content h1 {
+        font-size: 18px;
+        color: #FF5722;
+        margin: 0 0 10px;
+      }
+
+      .popup-content p {
+        font-size: 14px;
+        color: #2196F3;
+        margin: 5px 0;
+      }
     </style>
   </head>
   <body>
@@ -106,9 +127,11 @@
             const name = feature.properties.Name || "No Name";
             const notes = feature.properties.NOTES || "No Notes";
             layer.bindPopup(
-              "<h1>" + name + "</h1>" +
-              "<p><em>Type: " + feature.properties.Type + "</em></p>" +
-              "<p>" + notes + "</p>"
+              `<div class="popup-content">
+                <h1>${name}</h1>
+                <p><em>Type: ${feature.properties.Type}</em></p>
+                <p>${notes}</p>
+              </div>`
             );
           },
         }).addTo(map);
