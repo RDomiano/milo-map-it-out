@@ -54,34 +54,32 @@
 
     // Load geojson data using fetch API
     fetch("./data/poi.geojson")
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        L.geoJSON(data, {
-          // style function
-          style: function (feature) {
-            return {
-              color: "black",
-              weight: 2,
-              fillOpacity: 0.5,
-              fillColor:
-                "#" + Math.floor(Math.random() * 16777215).toString(16),
-            };
-          },
+  .then((response) => {
+    return response.json();
+  })
+  .then((data) => {
+    L.geoJSON(data, {
+      // pointToLayer function to style point features
+      pointToLayer: function (feature, latlng) {
+        return L.circleMarker(latlng, {
+          radius: 8,
+          fillColor: "#ff7800",
+          color: "#000",
+          weight: 1,
+          opacity: 1,
+          fillOpacity: 0.8,
+        });
+      },
 
-          // popup function
-          onEachFeature: function (feature, layer) {
-            layer.bindPopup(
-              "<h1>" +
-                feature.properties.PR_NAME +
-                "</h1>" +
-                "<p>Province No: " +
-                feature.properties.PROVINCE +
-                "</p>"
-            );
-          },
-        }).addTo(map);
-      });
+      // popup function
+      onEachFeature: function (feature, layer) {
+        layer.bindPopup(
+          "<h1>" + feature.properties.Name + "</h1>" +
+          "<p><em>Type: " + feature.properties.Type + "</em></p>" +
+          "<p>" + feature.properties.NOTES + "</p>"
+        );
+      },
+    }).addTo(map);
+  });
   </script>
 </html>
